@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohamed Atef | مطور ويب ومصمم واجهات</title>
+    
+    <!-- استيراد خطوط Tajawal و Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- مكتبة أيقونات Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- مكتبة Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Tajawal', 'sans-serif'],
+                        heading: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        },
+                        accent: {
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 font-sans selection:bg-primary-600 selection:text-white">
+
+    <!-- شريط التنقل العلوي الثابت (Navbar) -->
+    <header class="fixed top-0 inset-x-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#home" class="flex items-center gap-2 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary-600 to-accent-600 flex items-center justify-center text-white font-heading font-bold text-xl shadow-lg shadow-primary-500/30 group-hover:scale-105 transition-transform">
+                    M
+                </div>
+                <span class="font-heading font-extrabold text-xl tracking-tight text-slate-900 dark:text-white" dir="ltr">
+                    Mohamed <span class="text-primary-600 dark:text-primary-400">Atef</span>
+                </span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-8 font-medium">
+                <a href="#home" class="text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">الرئيسية</a>
+                <a href="#about" class="text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">نبذة عني</a>
+                <a href="#skills" class="text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">مهاراتي</a>
+                <a href="#projects" class="text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">أعمالي</a>
+                <a href="#contact" class="text-slate-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">تواصل معي</a>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <button id="theme-toggle" type="button" aria-label="تبديل المظهر" aria-pressed="false" class="p-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-amber-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all focus:outline-none focus:ring-2 focus:ring-primary-500">
+                    <i id="theme-icon" class="fas fa-moon text-lg"></i>
+                </button>
+
+                <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary-600 hover:bg-primary-700 text-white font-medium shadow-md shadow-primary-600/20 transition-all">
+                    <span>وظفني الآن</span>
+                    <i class="fas fa-arrow-left text-sm"></i>
+                </a>
+
+                <button id="mobile-menu-btn" type="button" aria-label="فتح القائمة" aria-controls="mobile-menu" aria-expanded="false" class="md:hidden p-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </nav>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 pt-2 pb-6 space-y-2 shadow-xl">
+            <a href="#home" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">الرئيسية</a>
+            <a href="#about" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">نبذة عني</a>
+            <a href="#skills" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">مهاراتي</a>
+            <a href="#projects" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">أعمالي</a>
+            <a href="#contact" class="mobile-link block px-4 py-3 rounded-xl text-base font-medium text-primary-600 dark:text-primary-400 font-bold bg-primary-50 dark:bg-primary-950/50">تواصل معي</a>
+        </div>
+    </header>
+
+    <!-- القسم الرئيسي (Hero Section) -->
+    <section id="home" class="pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden relative">
+        <div class="absolute top-20 right-10 w-72 h-72 bg-primary-500/15 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute bottom-10 left-10 w-80 h-80 bg-accent-500/15 rounded-full blur-3xl -z-10"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 text-center lg:text-right space-y-6">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-50 dark:bg-primary-950/60 border border-primary-200 dark:border-primary-800 text-primary-700 dark:text-primary-300 text-sm font-semibold">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span>متاح للعمل الحر والمشاريع الجديدة</span>
+                    </div>
+
+                    <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white leading-tight">
+                        مرحباً، أنا <br class="hidden sm:inline">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-l from-primary-600 to-accent-600" dir="ltr">
+                            Mohamed Atef
+                        </span>
+                    </h1>
+
+                    <h2 class="font-heading text-xl sm:text-2xl font-bold text-slate-700 dark:text-slate-300">
+                        مطور مواقع وتطبيقات ويب
+                    </h2>
+
+                    <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        أقوم بتحويل الأفكار الإبداعية إلى مواقع وتطبيقات ويب تفاعلية، سريعة، وسهلة الاستخدام. أجمع بين جمال التصميم وقوة البرمجة لبناء تجارب رقمية استثنائية.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-primary-600 hover:bg-primary-700 text-white font-bold text-lg shadow-lg shadow-primary-600/30 transition-all flex items-center justify-center gap-2">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>تواصل معي</span>
+                        </a>
+                        <a href="#projects" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white dark:bg-slate-800 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-700 hover:border-primary-500 font-bold text-lg transition-all flex items-center justify-center gap-2">
+                            <i class="fas fa-code text-primary-600"></i>
+                            <span>تصفح أعمالي</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-72 h-72 sm:w-80 sm:h-80">
+                        <div class="absolute inset-0 rounded-3xl bg-gradient-to-tr from-primary-600 to-accent-600 rotate-6 opacity-20"></div>
+                        <div class="absolute inset-0 rounded-3xl bg-gradient-to-bl from-primary-500 to-emerald-500 -rotate-3 opacity-20"></div>
+                        
+                        <div class="relative w-full h-full rounded-3xl border-4 border-white dark:border-slate-800 shadow-2xl bg-gradient-to-br from-slate-900 via-slate-800 to-primary-950 flex flex-col items-center justify-center p-6 text-center select-none">
+                            <div class="w-24 h-24 rounded-2xl bg-gradient-to-tr from-primary-600 to-accent-600 flex items-center justify-center text-white font-heading font-extrabold text-4xl shadow-lg mb-4" dir="ltr">
+                                MA
+                            </div>
+                            <p class="font-heading font-extrabold text-2xl text-white tracking-wide" dir="ltr">Mohamed Atef</p>
+                            <p class="text-primary-300 text-sm font-medium mt-1">Web Developer</p>
+                        </div>
+
+                        <div class="absolute -bottom-6 -right-4 sm:-right-6 bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700 flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 flex items-center justify-center text-xl font-bold">
+                                +2
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500">سنوات من</p>
+                                <p class="font-bold text-slate-900 dark:text-white">الخبرة العملية</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم نبذة عني (About Me) -->
+    <section id="about" class="py-20 bg-white dark:bg-slate-900/50 border-y border-slate-200/70 dark:border-slate-800/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-primary-600 dark:text-primary-400 font-bold tracking-wider uppercase text-sm">تعرّف عليّ أكثر</span>
+                <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-2">نبذة عني وشغفي</h2>
+                <div class="w-20 h-1.5 bg-gradient-to-l from-primary-600 to-accent-600 mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <h3 class="font-heading text-2xl font-bold text-slate-900 dark:text-white">
+                        أصنع حلولاً رقمية تجمع بين الأداء العالي والتصميم الأنيق
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-lg">
+                        بدأت رحلتي في عالم تطوير الويب، حيث عملت على بناء العديد من المنصات وتطبيقات الويب المتكاملة. أؤمن بأن كل موقع إلكتروني يجب أن يوفر تجربة سلسة وسريعة للمستخدم على جميع الأجهزة.
+                    </p>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-lg">
+                        أهتم بأدق التفاصيل البرمجية وتصميم الواجهات، مع الحرص المستمر على مواكبة أحدث التقنيات لتقديم أفضل جودة ممكنة.
+                    </p>
+                </div>
+
+                <div class="lg:col-span-5">
+                    <div class="bg-slate-50 dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 shadow-lg space-y-6">
+                        <h4 class="font-heading text-xl font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-700 pb-4">
+                            معلومات أساسية
+                        </h4>
+                        <ul class="space-y-4 text-slate-700 dark:text-slate-300">
+                            <li class="flex items-center justify-between">
+                                <span class="font-semibold text-slate-500 flex items-center gap-2">
+                                    <i class="fas fa-user text-primary-500 w-5"></i> الاسم الكامل:
+                                </span>
+                                <span class="font-bold" dir="ltr">Mohamed Atef</span>
+                            </li>
+                            <li class="flex items-center justify-between">
+                                <span class="font-semibold text-slate-500 flex items-center gap-2">
+                                    <i class="fas fa-map-marker-alt text-primary-500 w-5"></i> الموقع:
+                                </span>
+                                <span class="font-bold">القاهرة، مصر</span>
+                            </li>
+                            <li class="flex items-center justify-between">
+                                <span class="font-semibold text-slate-500 flex items-center gap-2">
+                                    <i class="fas fa-envelope text-primary-500 w-5"></i> البريد:
+                                </span>
+                                <span class="font-bold text-sm" dir="ltr">ma2821356@gmail.com</span>
+                            </li>
+                            <li class="flex items-center justify-between">
+                                <span class="font-semibold text-slate-500 flex items-center gap-2">
+                                    <i class="fas fa-graduation-cap text-primary-500 w-5"></i> الدراسة:
+                                </span>
+                                <span class="font-bold">جامعة حلوان الدولية</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم المهارات (Skills) -->
+    <section id="skills" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-primary-600 dark:text-primary-400 font-bold tracking-wider uppercase text-sm">خبراتي التقنية</span>
+                <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-2">المهارات والأدوات</h2>
+                <div class="w-20 h-1.5 bg-gradient-to-l from-primary-600 to-accent-600 mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div class="w-14 h-14 rounded-2xl bg-primary-100 dark:bg-primary-950 text-primary-600 flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-slate-900 dark:text-white mb-6">تطوير الواجهات الأمامية</h3>
+                    <div class="space-y-5">
+                        <div>
+                            <div class="flex justify-between text-sm font-bold mb-1.5">
+                                <span>HTML5 & CSS3 / Tailwind</span>
+                                <span class="text-primary-600">95%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                                <div class="bg-primary-600 h-full rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm font-bold mb-1.5">
+                                <span>JavaScript (ES6+)</span>
+                                <span class="text-primary-600">90%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                                <div class="bg-primary-600 h-full rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div class="w-14 h-14 rounded-2xl bg-accent-100 dark:bg-accent-950 text-accent-600 flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-pen-nib"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-slate-900 dark:text-white mb-6">تصميم واجهات المستخدم</h3>
+                    <div class="space-y-5">
+                        <div>
+                            <div class="flex justify-between text-sm font-bold mb-1.5">
+                                <span>Figma & UI Design</span>
+                                <span class="text-accent-600">92%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                                <div class="bg-accent-600 h-full rounded-full" style="width: 92%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm font-bold mb-1.5">
+                                <span>Responsive Design</span>
+                                <span class="text-accent-600">98%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                                <div class="bg-accent-600 h-full rounded-full" style="width: 98%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800 shadow-sm md:col-span-2 lg:col-span-1">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-slate-900 dark:text-white mb-6">أدوات التطوير</h3>
+                    <div class="flex flex-wrap gap-2.5">
+                        <span class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-sm">Git & GitHub</span>
+                        <span class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-sm">Node.js</span>
+                        <span class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-sm">REST APIs</span>
+                        <span class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-sm">VS Code</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم أعمالي / مشاريعي (Projects) -->
+    <section id="projects" class="py-20 bg-white dark:bg-slate-900/50 border-y border-slate-200/70 dark:border-slate-800/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-primary-600 dark:text-primary-400 font-bold tracking-wider uppercase text-sm">معرض الأعمال</span>
+                <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-2">أبرز مشاريعي</h2>
+                <div class="w-20 h-1.5 bg-gradient-to-l from-primary-600 to-accent-600 mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- مشروع 1 -->
+                <div class="bg-slate-50 dark:bg-slate-800 rounded-3xl p-7 border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-primary-100 dark:bg-primary-950 text-primary-600 flex items-center justify-center text-2xl font-bold">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <span class="text-xs font-bold px-3 py-1 rounded-full bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300">تطوير ويب</span>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-slate-900 dark:text-white mb-3">منصة متجر إلكتروني</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                            منصة تجارة إلكترونية متكاملة التصميم تدعم عرض المنتجات وتصفح الأقسام بتجربة مستخدم سلسة ومتجاوبة بالكامل.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-200 dark:border-slate-700">
+                        <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">HTML/CSS</span>
+                        <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">JavaScript</span>
+                        <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">Tailwind</span>
+                    </div>
+                </div>
+
+                <!-- مشروع 2 -->
+                <div class="bg-slate-50 dark:bg-slate-800 rounded-3xl p-7 border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-accent-100 dark:bg-accent-950 text-accent-600 flex items-center justify-center text-2xl font-bold">
+                                <i class="fas fa-cloud-sun"></i>
+                            </div>
+                            <span class="text-xs font-bold px-3 py-1 rounded-full bg-accent-100 dark:bg-accent-900/50 text-accent-700 dark:text-accent-300">تطبيق ويب</span>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-slate-900 dark:text-white mb-3">تطبيق حالة الطقس</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                            تطبيق تفاعلي لجلب درجات الحرارة وتوقعات الطقس لمختلف المدن لحظياً باستخدام واجهات البرمجة (APIs).
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-200 dark:border-slate-700">
+                        <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">JavaScript</span>
+                        <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">REST API</span>
+                    </div>
+                </div>
+
+                <!-- مشروع 3 -->
+                <div class="bg-slate-50 dark:bg-slate-800 rounded-3xl p-7 border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 flex items-center justify-center text-2xl font-bold">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <span class="text-xs font-bold px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300">إنتاجية</span>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-slate-900 dark:text-white mb-3">نظام إدارة المهام</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
+                            لوحة مهام ذكية لإضافة وحذف وتنظيم المهام اليومية مع حفظ البيانات محلياً في المتصفح (LocalStorage).
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-200 dark:border-slate-700">
+                        <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">DOM Manipulation</span>
+                        <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">CSS3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم تواصل معي (Contact) -->
+    <section id="contact" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-primary-600 dark:text-primary-400 font-bold tracking-wider uppercase text-sm">ابق على تواصل</span>
+                <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-2">تواصل معي مباشرة</h2>
+                <div class="w-20 h-1.5 bg-gradient-to-l from-primary-600 to-accent-600 mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <div class="max-w-2xl mx-auto bg-white dark:bg-slate-900 rounded-3xl p-8 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-xl">
+                <form id="contact-form" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">الاسم الكريم</label>
+                        <input type="text" id="name" name="name" autocomplete="name" required class="w-full px-4 py-3.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-primary-500 text-slate-800 dark:text-white" placeholder="أدخل اسمك هنا...">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">البريد الإلكتروني</label>
+                        <input type="email" id="email" name="email" autocomplete="email" required class="w-full px-4 py-3.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-primary-500 text-slate-800 dark:text-white" placeholder="example@domain.com">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">الرسالة</label>
+                        <textarea id="message" name="message" required class="w-full px-4 py-3.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-primary-500 text-slate-800 dark:text-white" rows="5" placeholder="اكتب تفاصيل مشروعك أو رسالتك هنا..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-4 rounded-xl bg-primary-600 hover:bg-primary-700 text-white font-bold text-lg shadow-lg shadow-primary-600/30 transition-all flex items-center justify-center gap-2">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                        <span>إرسال الرسالة عبر الواتساب</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- التذييل (Footer) -->
+    <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="font-heading font-bold text-lg text-slate-900 dark:text-white mb-2" dir="ltr">Mohamed Atef</p>
+            <p class="text-sm text-slate-500 dark:text-slate-400">جميع الحقوق محفوظة &copy; 2026</p>
+        </div>
+    </footer>
+
+    <!-- جافاسكريفت (الوضع الليلي، القائمة الجانبية، وإرسال الرسائل عبر الواتساب) -->
+    <script>
+        // تبديل الوضع الليلي
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const htmlElement = document.documentElement;
+
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlElement.classList.add('dark');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+            themeToggleBtn.setAttribute('aria-pressed', 'true');
+            themeToggleBtn.setAttribute('aria-label', 'التبديل إلى المظهر الفاتح');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            if (htmlElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                themeToggleBtn.setAttribute('aria-pressed', 'true');
+                themeToggleBtn.setAttribute('aria-label', 'التبديل إلى المظهر الفاتح');
+            } else {
+                localStorage.setItem('theme', 'light');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                themeToggleBtn.setAttribute('aria-pressed', 'false');
+                themeToggleBtn.setAttribute('aria-label', 'التبديل إلى المظهر الداكن');
+            }
+        });
+
+        // قائمة الهاتف المحمول
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const isOpen = !mobileMenu.classList.contains('hidden');
+            mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
+            mobileMenuBtn.setAttribute('aria-label', isOpen ? 'إغلاق القائمة' : 'فتح القائمة');
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                mobileMenuBtn.setAttribute('aria-label', 'فتح القائمة');
+            });
+        });
+
+        // إرسال الرسالة عبر الواتساب عند الضغط على زر الإرسال
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            // استبدل الرقم التالي برقم واتساب الخاص بك بكود الدولة (مثال: 20 لمصر) بدون علامة +
+            const phone = "201143327809";
+
+            const text = [
+                "مرحباً Mohamed Atef، رسالة جديدة من موقعك:",
+                "",
+                `الاسم: ${name}`,
+                `البريد: ${email}`,
+                `الرسالة: ${message}`
+            ].join("\n");
+
+            const url = new URL(`https://wa.me/${phone}`);
+            url.searchParams.set("text", text);
+            window.open(url.toString(), '_blank', 'noopener,noreferrer');
+        });
+    </script>
+</body>
+</html>
